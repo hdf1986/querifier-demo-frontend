@@ -1,11 +1,16 @@
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
-const Product = () => {
+const Product = ({
+  id,
+  title
+}) => {
   return (
     <article className={styles.book}>
-      <Link href={`/books/123`}>
-        <h2>Titulo</h2>
+      <Link href={`/books/${id}`}>
+        <a>
+          <h2>{title}</h2>
+        </a>
       </Link>
     </article>
   )
