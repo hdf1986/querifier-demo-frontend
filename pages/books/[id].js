@@ -1,16 +1,18 @@
+import Head from 'next/head';
 import { fetchBook, fetchBooks } from '../../services/api'
 import styles from '../../styles/books/Show.module.css'
 
 function Show({book}) {
   const { title, author, sinopsis } = book
   return (
-    <div>
-      <main className={styles.main}>
-        <h1 className={styles.mainTitle}>{title}</h1>
-        <h2>{author.name}</h2>
-        <p>{sinopsis}</p>
-      </main>
-    </div>
+    <>
+      <Head>
+        <title>{title} | Querifier</title>
+      </Head>
+      <h1 className={styles.mainTitle}>{title}</h1>
+      <h2>{author.name}</h2>
+      <p>{sinopsis}</p>
+    </>
   )
 }
 

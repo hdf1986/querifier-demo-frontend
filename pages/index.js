@@ -18,21 +18,19 @@ function Home(props) {
   }, [search])
 
   return (
-    <div>
-      <main className={styles.main}>
-        <h1 className={styles.mainTitle}>Books</h1>
-        <input className={styles.search} 
-               type="text" value={search}
-               onChange={e => setSearch(e.target.value)}
-               placeholder="Search..."
-        />
-        <section className={styles.grid}>
-          {books.map((book) => (
-            <Product key={book.id} {...book}/>
-          ))}
-        </section>
-      </main>
-    </div>
+    <>
+      <h1 className={styles.mainTitle}>Books</h1>
+      <input className={styles.search} 
+              type="text" value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search..."
+      />
+      <section className={styles.grid}>
+        {books.map((book) => (
+          <Product key={book.id} {...book}/>
+        ))}
+      </section>
+    </>
   )
 }
 
