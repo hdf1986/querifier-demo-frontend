@@ -1,13 +1,26 @@
 import styles from '../styles/Home.module.css'
 
 import Product from '../components/Product'
+import { useEffect, useState } from 'react'
+import { fetchBooks } from '../services/api'
 
-function Home({books}) {
+function Home(props) {
+  const [search, setSearch] = useState('')
+  const [books, setBooks] = useState(props.books)
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchBooks(search, controller.signal)
+      .then(newBooks => setBooks(newBooks))
+
+    return () => controller.abort()
+  }, [search])
+
   return (
     <div>
       <main className={styles.main}>
-
         <h1 className={styles.mainTitle}>Books</h1>
+        <input type="text" value={search} onChange={e => setSearch(e.target.value)}></input>
         <section className={styles.grid}>
           {books.map((book) => (
             <Product key={book.id} {...book}/>
@@ -19,9 +32,8 @@ function Home({books}) {
 }
 
 export async function getStaticProps () {
-  const response = await fetch('https://querifier-demo.herokuapp.com/v1/books?page=1&filter[where][title]=Season&filter[order][id]=desc')
+  const books = await fetchBooks()
 
-  const books = await response.json();
   return { 
     props: {
       books
