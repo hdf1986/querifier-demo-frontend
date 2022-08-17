@@ -9,6 +9,7 @@ function Home(props) {
   const [books, setBooks] = useState(props.books)
 
   useEffect(() => {
+    // TODO: This fetch call could be debounced in case the user inputs too frequently
     const controller = new AbortController();
     fetchBooks(search, controller.signal)
       .then(newBooks => setBooks(newBooks))
