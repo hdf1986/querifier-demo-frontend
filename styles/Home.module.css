@@ -5,6 +5,7 @@
   min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 1rem;
 }
 
 .main h1 {
@@ -12,20 +13,29 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill,minmax(270px,1fr));
 }
 
 .book {
-  margin: 0 15px 15px 0;
-  z-index: 2;
-  border-color: rgb(51, 51, 51);
-  border-width: 1px;
-  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(51, 51, 51);
   color: white;
   text-decoration: none;
   transition: 0.3s ease-in-out transform;
-  max-width: 250px;
   padding: 1.5rem;
+  min-height: 150px;
+  text-align: center;
+}
+
+.search {
+  background: transparent;
+  color: white;
+  font-size: 2rem;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid white;
 }

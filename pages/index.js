@@ -21,7 +21,11 @@ function Home(props) {
     <div>
       <main className={styles.main}>
         <h1 className={styles.mainTitle}>Books</h1>
-        <input type="text" value={search} onChange={e => setSearch(e.target.value)}></input>
+        <input className={styles.search} 
+               type="text" value={search}
+               onChange={e => setSearch(e.target.value)}
+               placeholder="Search..."
+        />
         <section className={styles.grid}>
           {books.map((book) => (
             <Product key={book.id} {...book}/>
@@ -33,6 +37,8 @@ function Home(props) {
 }
 
 export async function getStaticProps () {
+  // For the sake of simplicity, pagination was not included in this project.
+  // Just page 1 is rendered
   const books = await fetchBooks()
 
   return { 
