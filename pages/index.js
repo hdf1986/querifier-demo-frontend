@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import Product from '../components/Product'
 import { useEffect, useState } from 'react'
 import { fetchBooks } from '../services/api'
+import Head from 'next/head'
 
 function Home(props) {
   const [search, setSearch] = useState('')
@@ -19,6 +20,9 @@ function Home(props) {
 
   return (
     <>
+      <Head>
+        <title>Querifier</title>
+      </Head>
       <h1 className={styles.mainTitle}>Books</h1>
       <input className={styles.search} 
               type="text" value={search}
