@@ -1,19 +1,23 @@
-import { fetchBooks } from '../../services/api'
+import { fetchBook, fetchBooks } from '../../services/api'
 import styles from '../../styles/books/Show.module.css'
 
-function Show() {
+function Show({book}) {
+  const { title, author, sinopsis } = book
   return (
     <div>
       <main className={styles.main}>
-        <h1 className={styles.mainTitle}>Book detail</h1>
+        <h1 className={styles.mainTitle}>{title}</h1>
+        <h2>{author.name}</h2>
+        <p>{sinopsis}</p>
       </main>
     </div>
   )
 }
 
-export async function getStaticProps () {
+export async function getStaticProps ({ params }) {
+  const book = await fetchBook(params.id);
   return {
-    props: {},
+    props: { book },
     revalidate: 60 * 60
   }
 }
